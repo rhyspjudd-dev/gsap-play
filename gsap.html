@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
     <title>Document</title>
 
     <style>
@@ -36,6 +37,16 @@
 
     #demo-2 {
         height: 300px;
+    }
+
+    #demo-4 {
+        background: lightgray;
+        height: 140px;
+        padding: 1%;
+        border-radius: 120px;
+        position: relative;
+        display: flex;
+        align-items: unset;
     }
     
     .circle {
@@ -69,6 +80,19 @@
         background:#ffb6c1;
     }
 
+    .bar {
+        background: lightseagreen;
+        background-image: linear-gradient(to right, lightseagreen , #ffb6c1);
+        height: 85%;
+        width: 100%;
+        border-radius: 120px;
+        position: absolute;
+    }
+    
+    #demo-4 .inner {
+        width: 100%;
+    }
+
     </style>
 
 </head>
@@ -89,6 +113,12 @@
         <div class="circle-3 circle-3x circle"></div>
         <div class="circle-3 circle-3x circle"></div>
         <div class="circle-3 circle-3x circle"></div>
+    </section>
+
+    <section id="demo-4">
+        <div class="inner">
+        <div class="bar"></div>
+        </div>
     </section>
 
 <script>
@@ -123,12 +153,25 @@
         scale: 0.3,
         ease: "back"
     });
-
     gsap.from(".circle-3x",  {
         duration: 1,
         opacity: 0, 
-        y: 150,
+        delay: 0.5,
+        //y: 150,
+        y: () => Math.random() * 400 - 200,
         stagger: 0.25
+    });
+
+    // Demo 4 
+    TweenLite.defaultEase = Power0.easeNone;
+    TweenMax.set('.bar', {
+        width: document.querySelectorAll('.inner')[0].offsetWidth
+    });
+    TweenMax.from(".bar", 2.2, {
+        width:"0%",  
+        ease:Power0.easeNone, 
+        repeat:-1, 
+        repeatDelay:2
     });
 
 </script>
