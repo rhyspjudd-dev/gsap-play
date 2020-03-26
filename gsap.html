@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <title>Document</title>
+
+    <style>
+
+    section {
+        margin: 5% auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0.5px solid lightgray;
+    }
+
+    section:nth-child(3) {
+        margin: 5% auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: none;
+    }
+
+    #demo-1 {
+        background: lightgray;
+        height: 140px;
+        display: flex;
+        padding: 1%;
+        border-radius: 120px;
+    }
+
+    #demo-2 {
+        height: 300px;
+    }
+    
+    .circle {
+        width: 120px;
+        height: 120px;
+        background: lightseagreen;
+        border-radius: 100%;
+        color: #fff;
+        text-transform: uppercase;
+        margin: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .circle-2 { 
+        width: 80px;
+        height: 80px;
+    }
+
+    .circle-3{
+        width: 50px;
+        height: 50px;
+    }
+
+    .circle-3:nth-child(1) {
+        background: lightsalmon;
+    }
+
+    .circle-3:nth-child(even) {
+        background:#ffb6c1;
+    }
+
+    </style>
+
+</head>
+<body class="container p-5">
+
+    <section id="demo-1">
+        <div class="circle-1 circle">Winner!</div>
+    </section>
+
+    <section id="demo-2">
+        <div class="circle-2 circle">Winner!</div>
+        <div class="circle-2 circle-2x circle">Winner!</div>
+    </section>
+
+    <section id="demo-3">
+        <div class="circle-3 circle-3y circle"></div>
+        <div class="circle-3 circle-3x circle"></div>
+        <div class="circle-3 circle-3x circle"></div>
+        <div class="circle-3 circle-3x circle"></div>
+        <div class="circle-3 circle-3x circle"></div>
+    </section>
+
+<script>
+    // Demo-1
+    gsap.to(".circle-1", {
+        duration: 2, 
+        backgroundColor: "#ffb6c1", 
+        ease: "slow(0.7, 0.7,  false)", 
+        x: 275
+    });
+
+    // Demo-2 
+    gsap.set(".circle-2, .circle-2x", { 
+        transformOrigin: "50 50%"
+    });
+    gsap.to(".circle-2, .circle-2x", { 
+        duration: 5,
+        rotation: 360
+    });
+    var circleObject = {
+        rotation: 0
+    };
+    gsap.to(circleObject,  {
+        duration: 5,
+        rotation: 360
+    });
+
+    // Demo 3
+    gsap.from(".circle-3y",  {
+        duration: 1.5,
+        opacity: 0, 
+        scale: 0.3,
+        ease: "back"
+    });
+
+    gsap.from(".circle-3x",  {
+        duration: 1,
+        opacity: 0, 
+        y: 150,
+        stagger: 0.25
+    });
+
+</script>
+
+</body>
+</html>
