@@ -20,7 +20,13 @@
         border: 0.5px solid lightgray;
     }
 
-    section:nth-child(3) {
+    section:nth-child(1) {
+        border: none;
+        display: flex;
+        align-items: flex-start !important;
+    }
+
+    section:nth-child(4) {
         margin: 5% auto;
         display: flex;
         justify-content: center;
@@ -121,6 +127,10 @@
 			font-size: 60px;
 			text-transform: uppercase;
 		}
+
+        p.slogan strong:nth-last-of-type() {
+            color: lightseagreen;
+        }
 		
 		p.slogan strong{
 			display:block;
@@ -133,6 +143,17 @@
 
 </head>
 <body class="container p-5">
+
+    <section id="demo-5">
+        <div id="slogans">
+            <p class="slogan"><strong>TWEENMAX</strong></p>
+            <p class="slogan"><strong>IS GREAT</strong></p>
+            <p class="slogan"><strong>YOU CAN</strong></p>
+            <p class="slogan"><strong>ANIMATE</strong></p>
+            <p class="slogan"><strong>EVERYTHING</strong></p>
+            <p class="slogan"><strong>WITH</strong></p>
+        </div>
+    </section>
 
     <section id="demo-1">
         <div class="circle-1 circle">Winner!</div>
@@ -156,17 +177,6 @@
         <div class="bar"></div>
         </div>
     </section>
-
-    <div id="demo-5">
-        <div id="slogans">
-            <p class="slogan"><strong>TWEENMAX</strong></p>
-            <p class="slogan"><strong>IS GREAT</strong></p>
-            <p class="slogan"><strong>YOU CAN</strong></p>
-            <p class="slogan"><strong>ANIMATE</strong></p>
-            <p class="slogan"><strong>EVERYTHING</strong></p>
-            <p class="slogan"><strong>WITH</strong></p>
-        </div>
-    </div>
 
 <script>
     // Demo-1
@@ -252,12 +262,23 @@
 					currentSlogan = 0;
 				}
 				
-				TweenLite.to($slogans.eq(oldSlogan), transitionTime, {top:-20, alpha:0, rotationX: 90});
-				TweenLite.fromTo($slogans.eq(currentSlogan), transitionTime, {top:20, alpha:0, rotationX: -90 }, {top:0, alpha:1, rotationX:0});
+				TweenLite.to($slogans.eq(oldSlogan), transitionTime, {
+                    top:-20, 
+                    alpha:0, 
+                    rotationX: 90
+                });
+				TweenLite.fromTo($slogans.eq(currentSlogan), transitionTime, {
+                    top:20, 
+                    alpha:0, 
+                    rotationX: -90 }, 
+                    {
+                        top:0, 
+                        alpha:1, 
+                        rotationX:0
+                    });
 				
 				TweenLite.delayedCall(slogansDelayTime, switchSlogan);
-			}
-			
+			}	
 		});
 
 </script>
