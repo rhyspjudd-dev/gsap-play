@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
@@ -93,6 +94,41 @@
         width: 100%;
     }
 
+    #demo-5 {
+			position: relative;
+			width: 100%;
+			margin: 5% auto;
+            height: 200px;
+			display: flex;
+            align-items: center;
+			-webkit-user-select: none;  
+			-moz-user-select: none;    
+			-ms-user-select: none;     
+			-o-user-select: none;
+			user-select: none;
+		}
+		
+		#slogans{
+			position: relative;
+			top: 0px;
+			left: 0;
+            width: 100%;
+		}
+		
+		p.slogan{
+			text-rendering: optimizeLegibility;
+			margin: 0px;
+			font-size: 60px;
+			text-transform: uppercase;
+		}
+		
+		p.slogan strong{
+			display:block;
+			position:relative;
+			opacity:0;
+		}
+
+
     </style>
 
 </head>
@@ -120,6 +156,17 @@
         <div class="bar"></div>
         </div>
     </section>
+
+    <div id="demo-5">
+        <div id="slogans">
+            <p class="slogan"><strong>TWEENMAX</strong></p>
+            <p class="slogan"><strong>IS GREAT</strong></p>
+            <p class="slogan"><strong>YOU CAN</strong></p>
+            <p class="slogan"><strong>ANIMATE</strong></p>
+            <p class="slogan"><strong>EVERYTHING</strong></p>
+            <p class="slogan"><strong>WITH</strong></p>
+        </div>
+    </div>
 
 <script>
     // Demo-1
@@ -173,6 +220,45 @@
         repeat:-1, 
         repeatDelay:2
     });
+
+    // Demo 5
+    $(function() {	
+			var $slogans = $("p.slogan").find("strong");
+			var $holder = $("#demo-5");
+			
+			//set via JS so they're visible if JS disabled
+			$slogans.parent().css({position : "absolute", top:"0px", left:"0px"});
+			
+			//settings
+			var transitionTime = 0.4;
+			var slogansDelayTime = 2;
+			
+			//internal
+			var totalSlogans = $slogans.length;
+			
+			var oldSlogan = 0;
+			var currentSlogan = -1;
+			
+			//initialize	
+			switchSlogan();
+			
+			function switchSlogan(){
+				
+				oldSlogan = currentSlogan;
+				
+				if(currentSlogan < totalSlogans-1){
+					currentSlogan ++
+				} else {
+					currentSlogan = 0;
+				}
+				
+				TweenLite.to($slogans.eq(oldSlogan), transitionTime, {top:-20, alpha:0, rotationX: 90});
+				TweenLite.fromTo($slogans.eq(currentSlogan), transitionTime, {top:20, alpha:0, rotationX: -90 }, {top:0, alpha:1, rotationX:0});
+				
+				TweenLite.delayedCall(slogansDelayTime, switchSlogan);
+			}
+			
+		});
 
 </script>
 
