@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <title>gsap hero</title>
+
+    <style>
+
+    @import url('https://fonts.googleapis.com/css?family=Muli:300,400,500,700,900&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: auto;
+            width: 100%;
+            font-family: 'Muli', sans-serif;
+        }
+
+        .hero {
+            height: 100vh;
+            width: 100vw;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            grid-column: 1;
+            padding: calc(6 * 1em);
+        }
+
+        h1 {
+            font-weight: 900;
+            font-size: 2.2em;
+        }
+
+        p {
+            margin-bottom: 50px;
+        }
+
+        a { 
+            text-decoration: none;
+            color: white;
+            
+        }
+
+        #cta {
+            height: 100px;
+            width: 250px;
+            background: lightseagreen;
+            padding: 10px 20px;
+        }
+
+        aside {
+            grid-column: 2;
+            height: 100%;
+            position: relative;
+        }
+
+        aside .img01 {
+            width: 450px;
+            height:85%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        aside .img02 {
+            width: 250px;
+            height: 250px;
+            border-radius: 100%;
+            position: absolute;
+            bottom: 10%;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <main class="hero">
+        <div class="content">
+            <h1 class="anim1"><span>Live on the edge</span><br><span> In sync with customers</span></h1>
+            <p class="anim1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime repudiandae sunt, consequuntur dolores quia molestias distinctio delectus similique voluptatem nemo neque quisquam, explicabo veritatis aliquid libero, id suscipit quam iusto.</p>
+            <a href="" class="anim1" id="cta">Start Dreaming</a>
+        </div>
+
+        <aside>
+    
+            <img class="img01 anim1" src="img01.jpg" alt="desert">
+
+            <img class="img02" src="img02.jpg" alt="globe">
+
+        </aside>
+    </main>
+
+<script>
+
+    gsap.from('.content', {opacity: 0, duration: 1, y: -50 });
+    gsap.from('.img02', {opacity: 1, y: 30, opacity: 0  })
+
+</script>
+
+</body>
+</html>
